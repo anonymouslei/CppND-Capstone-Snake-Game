@@ -1,11 +1,13 @@
 #ifndef GAME_H
 #define GAME_H
 
+#include <memory>
 #include <random>
 #include "SDL.h"
 #include "controller.h"
 #include "renderer.h"
 #include "snake.h"
+#include "search.h"
 
 class Game {
  public:
@@ -18,6 +20,8 @@ class Game {
  private:
   Snake snake;
   SDL_Point food;
+  // create a search()
+  std::unique_ptr<Search> search_;
 
   std::random_device dev;
   std::mt19937 engine;
@@ -28,6 +32,7 @@ class Game {
 
   void PlaceFood();
   void Update();
+  void SetSearch();
 };
 
 #endif
